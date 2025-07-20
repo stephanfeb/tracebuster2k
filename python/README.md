@@ -25,15 +25,13 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
 2. Install from GitHub:
-```bash
-pip install git+https://github.com/twostack/tracebuster2k.git
-```
 
 For development installation:
 ```bash
 # Clone the repository
-git clone https://github.com/twostack/tracebuster2k.git
-cd tracebuster2k
+git clone https://github.com/stephanfeb/tracebuster2k.git
+
+cd tracebuster2k/python
 
 # Create and activate virtual environment
 python -m venv .venv
