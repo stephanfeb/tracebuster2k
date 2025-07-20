@@ -1,0 +1,5 @@
+pytest>=6.0.0
+# Development dependencies
+build>=1.0.0
+twine>=4.0.0
+pytest-cov>=4.1.0  # For test coverage reports 

@@ -1,0 +1,7 @@
+-r requirements.txt
+black>=23.0.0  # Code formatting
+pylint>=3.0.0  # Code linting
+mypy>=1.0.0   # Type checking
+pytest-cov>=4.1.0  # Coverage reporting
+build>=1.0.0  # For building packages
+twine>=4.0.0  # For publishing packages 

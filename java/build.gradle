@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.json:json:20231013'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+}
+
+application {
+    mainClass = 'com.example.TracerDemo'
+}
+
+// Configure test execution
+test {
+    useJUnitPlatform()
+    
+    // Create a separate task for tracer tests
+    filter {
+        includeTestsMatching "com.example.calculator.*"
+        excludeTestsMatching "com.example.tracer.*"
+    }
+    
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+// Separate task for running tracer tests
+task tracerTest(type: Test) {
+    useJUnitPlatform()
+    
+    filter {
+        includeTestsMatching "com.example.tracer.*"
+    }
+    
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true  // Show debug output
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// Ensure proper classpath for all tasks
+tasks.withType(JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+} 
